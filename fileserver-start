@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Set default server port
+: ${FILESERVER_PORT:=9090}
+export FILESERVER_PORT
+
+# Generate server config from template
+envsubst </root/nginx.conf.template >/root/nginx.conf
+
+# Start server in non-daemon mode
+nginx -c /root/nginx.conf
